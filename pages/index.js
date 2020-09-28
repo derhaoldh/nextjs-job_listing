@@ -14,18 +14,15 @@ export default function App() {
   const updateQuery = (query)=>
   {
     setQuery(query);
-    console.log(searchQuery)
   }
 
-  function getQuery(searchQuery){
-    return searchQuery
-  }
+
   
   return (
     <ApolloProvider client={client}>
         <div className="bg-white-200">
             <div className="flex flex-row">
-              <div className="w-1/2"><Landing/></div>
+              <div className="w-1/2 mt-10"><Landing/></div>
               <div className="w-1/2 m-10">
                 <SearchBar updateQuery={updateQuery}/>
                 <div className="flex flex-col mt-10">
