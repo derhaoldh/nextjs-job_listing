@@ -1,36 +1,33 @@
-import React, { useState, useEffect} from 'react';
-import {Landing, SearchBar, JobPost} from '../components';
-import{ApolloClient, ApolloProvider , InMemoryCache} from '@apollo/client'
+import React, { useState } from "react";
+import { Landing, SearchBar, JobPost, NavBar } from "../components";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    uri:'https://api.graphql.jobs/'
-  })
-
-
-
+  cache: new InMemoryCache(),
+  uri: "https://api.graphql.jobs/",
+});
 
 export default function App() {
   const [searchQuery, setQuery] = useState(null);
-  const updateQuery = (query)=>
-  {
+  const updateQuery = (query) => {
     setQuery(query);
-  }
+  };
 
-
-  
   return (
     <ApolloProvider client={client}>
-        <div className="bg-white-200">
-            <div className="flex flex-row">
-              <div className="w-1/2 mt-10"><Landing/></div>
-              <div className="w-1/2 m-10">
-                <SearchBar updateQuery={updateQuery}/>
-                <div className="flex flex-col mt-10">
-                  <JobPost searchQuery={searchQuery}></JobPost>
-                </div>
-              </div>
+      <div className="bg-white-200">
+        <NavBar />
+        <div className="flex flex-row">
+          <div className="w-1/2 mt-10">
+            <Landing />
+          </div>
+          <div className="w-1/2 m-10">
+            <SearchBar updateQuery={updateQuery} />
+            <div className="flex flex-col mt-10">
+              <JobPost searchQuery={searchQuery}></JobPost>
             </div>
+          </div>
         </div>
-        </ApolloProvider>
-  )
-};
+      </div>
+    </ApolloProvider>
+  );
+}
